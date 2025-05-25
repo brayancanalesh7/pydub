@@ -1,0 +1,20 @@
+from pydub.generators import Sine
+from pydub import AudioSegment
+
+# Create a basic dark melody using sine waves (A# minor)
+note1 = Sine(466.16).to_audio_segment(duration=400)  # A#4
+note2 = Sine(622.25).to_audio_segment(duration=400)  # D#5
+note3 = Sine(554.37).to_audio_segment(duration=400)  # C#5
+note4 = Sine(493.88).to_audio_segment(duration=400)  # B4
+
+# Combine notes into a loop
+melody_loop = note1 + note2 + note3 + note4
+
+# Repeat the loop
+melody_full = melody_loop * 4
+
+# Lower volume
+melody_full = melody_full - 10
+
+# Export to MP3
+melody_full.export("pop_smoke_style_loop.mp3", format="mp3")
